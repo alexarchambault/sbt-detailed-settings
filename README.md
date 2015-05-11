@@ -1,5 +1,7 @@
 # sbt-detailed-settings
 
+[![Build Status](https://travis-ci.org/alexarchambault/sbt-detailed-settings.svg?branch=master)](https://travis-ci.org/alexarchambault/sbt-detailed-settings)
+
 A SBT plugin that adds a `detailedModuleSettings` to SBT, which
 returns a more precise output than the natively defined
 `moduleSettings`. In particular, it appends the cross version

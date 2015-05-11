@@ -1,0 +1,14 @@
+language: scala
+scala:
+- 2.10.5
+jdk:
+- oraclejdk7
+- oraclejdk8
+script: sbt ++${TRAVIS_SCALA_VERSION} test $(if [[ "${TRAVIS_PULL_REQUEST}" == "false"
+  && ${JAVA_HOME} == $(jdk_switcher home oraclejdk7) && "${TRAVIS_BRANCH}" == "master"
+  ]]; then echo "publish"; fi)
+sudo: false
+env:
+  global:
+  - secure: IBiuL1kywY36aRckWZh5/NOAOQ0Hnmk+lkNO8E6iR7nGi3oFLvKiETRUmfV0wHJTkrT92Tr5CyE84Tx7yJkHCd34GXPSW73JfNo0ybZBtm4+k4s7P071/XeUYHrrNHwpRe76bBApyJeWj9+UGGd2wKo1IZfuU6dOwkh9KO4B5nzJnAsGVZgljbkmDmbuBLucI0UHEn8agdy+EFBcD8v4BPJnPXWUh3CSnrpZt3AG29pZ2Qo0teBwqHQ7ncl3jlIseW3ld1tXUnacSilnBrvhKElZT38wJGp5mk0+/paL1QJK8Ombbz+4c/PKErSROv+bkl7ZcgqYkD8S9dLnBKUHvyd+uoVIHgdwE3g3XuXA/yUhx8ULBunKFGfijX7GLpQtHQAvlNsZbG/Qu9mTdSVODdmYabsbSa6CxECbp7Q0kSGUQpwUtfXXSE5XiH3c8mCPFN322N78LABe9zAkxQe+Mm2bRJCx6PJQ+DLezx2ryeAthKmU2VO9rel9PzxLr/hmTk0W7XO8BLT6Gx0fV+eA9KudBrbrIxsYBl2Jbghjx4tOtqZ4iz3oa7jLobkE1V5AsKBIRqPU/qwYFEyh8+pbgv693ddBbuA1ArqZwvMKew4PTm26IJor2a+47urFlCU3aHimnwWUpUCDG2dXYiS5qyKqZSVngGJ1xGkIcmCoMHg=
+  - secure: nUUpFyUKVHYEVbfTNJxuZ1XFs0b3G0plzZeNE7ci1RA8cjAkYd8OMTbCOEQ736RmNcWz0VJ7BTl9nNz6RPQw5j1J6kvtUNyn9O8bz4ZotclE/0wx5VXHdFghkubfI/cpFGwejZ0tcBljMX9uZ4CQsUbVnyr9SKDuhExobXcS+9ix2iyDd2DTGv+NLNfKpKw6bTXu/om1XrfUqAOlEAMXOLMi4lo4FufWFWmDkFyztwFzn6Oua12eaXQ1LNkOVJk5HY+r0e3EfiFhLwuhD997dO/dIv8kElVknbygs+DFt36SB+Ic/9A05ZLp6+u9FRA6bBu1molohe7/YdgCxvzzyPONjj+/0TaHs8tsCcyZhUzxvfMDZTz4FQQ46vI5D+nKtwqu7JxJY+Q3i6fwOFjFiXcTW6qY3MgSj2NRDGKjSoWH4hVITEVspQpJ9ifQvFm4vOEfdz/N8O5oKVSsR7ywYVE/iwJGwsMXtT28L3dQwwLNz19PWl8jQnpC/cE4JPZKDIVyJYqxT83uoGmVG32IUJn7nT/FTtVEJdaXD6xSUf7Vltovgb2XCScqnQx0GocThDxlFN6Nfhs4bDM7o90LyL7zE8bhFUe/k1Nwp1TDXzPRtlDf7sL1W/C1M+fxLGGkINt/ODpJDBUo5ZXH1vaYM3tbxYAR0q/JEyRdHrjcfpw=

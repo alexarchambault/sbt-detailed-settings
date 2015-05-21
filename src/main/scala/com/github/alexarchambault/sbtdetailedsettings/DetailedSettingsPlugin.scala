@@ -5,6 +5,7 @@ import sbt._, Keys._
 object DetailedSettingsPlugin extends AutoPlugin {
 
   object autoImport {
+    val detailedProjectID = taskKey[ModuleID]("Detailed project ID")
     val detailedModuleSettings = taskKey[ModuleSettings]("Detailed module settings")
   }
 
@@ -27,6 +28,19 @@ object DetailedSettingsPlugin extends AutoPlugin {
     }
 
   override lazy val projectSettings = Seq(
+    detailedProjectID := {
+      val (scalaVersionValue, scalaBinaryVersionValue) =
+        moduleSettings.value match {
+          case settings: InlineConfigurationWithExcludes =>
+            (settings.ivyScala.map(_.scalaFullVersion) getOrElse scalaVersion.value,
+              settings.ivyScala.map(_.scalaBinaryVersion) getOrElse scalaBinaryVersion.value)
+
+          case other =>
+            (scalaVersion.value, scalaBinaryVersion.value)
+        }
+
+      mapModuleId(projectID.value, scalaBinaryVersionValue, scalaVersionValue)
+    },
     detailedModuleSettings := {
       moduleSettings.value match {
         case settings: InlineConfigurationWithExcludes =>

@@ -4,8 +4,10 @@ import sbt._, Keys._
 
 object DetailedSettingsPlugin extends AutoPlugin {
 
+  case class ProjectID(organization: String, name: String, version: String)
+
   object autoImport {
-    val detailedProjectID = taskKey[ModuleID]("Detailed project ID")
+    val detailedProjectID = taskKey[ProjectID]("Detailed project ID")
     val detailedModuleSettings = taskKey[ModuleSettings]("Detailed module settings")
   }
 
@@ -39,7 +41,8 @@ object DetailedSettingsPlugin extends AutoPlugin {
             (scalaVersion.value, scalaBinaryVersion.value)
         }
 
-      mapModuleId(projectID.value, scalaBinaryVersionValue, scalaVersionValue)
+      val m = mapModuleId(projectID.value, scalaBinaryVersionValue, scalaVersionValue)
+      ProjectID(m.organization, m.name, m.revision)
     },
     detailedModuleSettings := {
       moduleSettings.value match {

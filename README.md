@@ -2,15 +2,15 @@
 
 [![Build Status](https://travis-ci.org/alexarchambault/sbt-detailed-settings.svg?branch=master)](https://travis-ci.org/alexarchambault/sbt-detailed-settings)
 
-A SBT plugin that adds a `detailedModuleSettings` to SBT, which
-returns a more precise output than the natively defined
-`moduleSettings`. In particular, it appends the cross version
-suffixes to module names when needed.
+A SBT plugin that adds extra tasks related to modules,
+which return more precise outputs, regarding cross versioning, than their counterpart defined in SBT.
+In particular, it defines `detailedModuleSettings` (better `moduleSettings`)
+and `detailedProjectID` (better `projectID`).
 
-`moduleSettings` provides information about module organization/name/version,
+`detailedModuleSettings` provides information about module organization/name/version,
 and dependencies, about each project.
 This plugin allows external programs to re-use these module settings
-in other contexts.
+in other contexts, like [Jupyter Scala](https://github.com/alexarchambault/jupyter-scala) does.
 
 ## Quick start
 
